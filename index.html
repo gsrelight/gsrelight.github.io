@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="We present a spatial and angular Gaussian based representation and a triple splatting process, for real-time, high-quality novel lighting-and-view synthesis from multi-view point-lit input images.">
+  <meta name="keywords" content="GS3, Relightable Gaussian, Gaussian">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GS^3: Efficient Relighting with Triple Gaussian Splatting</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P5TW3NKDFW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-P5TW3NKDFW');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Efficient Relighting with Triple Gaussian Splatting
+            </h1>
+            <h2 class="subtitle is-size-4 publication-venue">SIGGRAPH Asia 2024</h2>
+            <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/RupertPaoZ">Zoubin Bi</a><sup>*</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="">Yixin Zeng</a><sup>*</sup>,
+                </span>
+              <span class="author-block">
+                <a href="https://www.chong-zeng.com/">Chong Zeng</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Fan Pei</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Xiang Feng</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Kun Zhou</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://svbrdf.github.io/">Hongzhi Wu</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">State Key Lab of CAD and CG, Zhejiang University</span>
+            </div>
+            
+            <div class="is-size-6 publication-note">
+                <span class="author-block"><sup>*</sup>contributed equally</span>
+              </div>  
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="./pdfs/GS3.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="./pdfs/GS3_Supplemental.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Supplementary</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./imgs/teaser.jpg" />
+        <h2 class="subtitle has-text-centered">
+          Free viewpoint relighting results trained on 2,000 photographs per scene captured with a lightstage.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+                We present a spatial and angular Gaussian based representation and a triple 
+                splatting process, for real-time, high-quality novel lighting-and-view synthesis 
+                from multi-view point-lit input images. To describe complex appearance, 
+                we employ a Lambertian plus a mixture of angular Gaussians as an effective 
+                reflectance function for each spatial Gaussian. To generate self-shadow, we 
+                splat all spatial Gaussians towards the light source to obtain shadow values, 
+                which are further refined by a small multi-layer perceptron. To compensate 
+                for other effects like global illumination, another network is trained to 
+                compute and add a per-spatial-Gaussian RGB tuple. The effectiveness of our 
+                representation is demonstrated on 30 samples with a wide variation in geometry 
+                (from solid to fluffy) and appearance (from translucent to anisotropic), 
+                as well as using different forms of input data, including rendered images 
+                of synthetic/reconstructed objects, photographs captured with a handheld 
+                camera and a flash, or from a professional lightstage. We achieve a training 
+                time of 40-70 minutes and a rendering speed of 90 fps on a single commodity 
+                GPU. Our results compare favorably with state-of-the-art techniques in 
+                terms of quality/performance.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img src="./imgs/pipeline.png" />
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe width="1250" height="703" src="https://www.youtube.com/embed/PrG6tcpirmU" title="[SIGGRAPH Asia 2024] GS^3: Efficient Relighting with Triple Gaussian Splatting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        @inproceedings {bi2024rgs,
+            title      = {GS\textsuperscript{3}: Efficient Relighting with Triple Gaussian Splatting},
+            author     = {Zoubin Bi and Yixin Zeng and Chong Zeng and Fan Pei and Xiang Feng and Kun Zhou and Hongzhi Wu},
+            booktitle  = {ACM SIGGRAPH Asia 2024 Conference Proceedings},
+            year       = {2024}
+        }
+        </code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is constructed using the source code provided by <a
+                href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, and we are grateful for their template.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
