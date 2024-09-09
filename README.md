@@ -9,7 +9,7 @@ If you find our work useful in your research or publication, please cite our wor
 @inproceedings {bi2024rgs,
     title      = {GS\textsuperscript{3}: Efficient Relighting with Triple Gaussian Splatting},
     author     = {Zoubin Bi and Yixin Zeng and Chong Zeng and Fan Pei and Xiang Feng and Kun Zhou and Hongzhi Wu},
-    booktitle  = {ACM SIGGRAPH Asia 2024 Conference Proceedings},
+    booktitle  = {SIGGRAPH Asia 2024 Conference Papers},
     year       = {2024}
 }
 ```
