@@ -33,15 +33,37 @@
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Relighting Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://nrhints.github.io/">
+              NRHints
+            </a>
+            <a class="navbar-item" href="https://dilightnet.github.io/">
+              DiLightNet
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </nav>
-
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Efficient Relighting with Triple Gaussian Splatting
+            <h1 class="title is-1 publication-title">GS^3: Efficient Relighting with Triple Gaussian Splatting
             </h1>
             <h2 class="subtitle is-size-4 publication-venue">SIGGRAPH Asia 2024</h2>
             <div class="is-size-5 publication-authors">
@@ -127,7 +149,7 @@
       <div class="hero-body">
         <img src="./imgs/teaser.jpg" />
         <h2 class="subtitle has-text-centered">
-          Free viewpoint relighting results trained on 2,000 photographs per scene captured with a lightstage.
+          Free viewpoint relighting results trained on 500-2,000 photographs per scene captured with a lightstage.
         </h2>
       </div>
     </div>
@@ -183,12 +205,12 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>
-        @inproceedings {bi2024rgs,
-            title      = {GS\textsuperscript{3}: Efficient Relighting with Triple Gaussian Splatting},
-            author     = {Zoubin Bi and Yixin Zeng and Chong Zeng and Fan Pei and Xiang Feng and Kun Zhou and Hongzhi Wu},
-            booktitle  = {SIGGRAPH Asia 2024 Conference Papers},
-            year       = {2024}
-        }
+@inproceedings {bi2024rgs,
+    title      = {GS\textsuperscript{3}: Efficient Relighting with Triple Gaussian Splatting},
+    author     = {Zoubin Bi and Yixin Zeng and Chong Zeng and Fan Pei and Xiang Feng and Kun Zhou and Hongzhi Wu},
+    booktitle  = {SIGGRAPH Asia 2024 Conference Papers},
+    year       = {2024}
+}
         </code></pre>
     </div>
   </section>
